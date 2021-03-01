@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{ PostController }; // Chama a Controller de manipução dos dados das postagem. Como um INCLUDE
+use App\Http\Controllers\{PostController}; // Chama a Controller de manipução dos dados das postagem. Como um INCLUDE
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,6 +29,16 @@ Route::get('/posts/edit/{id}', [PostController::class, 'edit'])->name('posts.edi
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update'); //Rota que realiza a atualização.
 
 
+//ESTA ROTA FOI CRIADA QUANDO FOI INSTALADOS OS COMPONETES DO BREEZE "AUTENTICAÇÃO"
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+require __DIR__ . '/auth.php';
